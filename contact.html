@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Contact - GTM Sample Site</title>
-
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){
@@ -18,10 +17,15 @@
     })(window,document,'script','dataLayer','GTM-M2FJ969Z');
   </script>
 </head>
-
 <body>
-<h1>Contact Us</h1>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2FJ969Z"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+
+<h1>Contact Us</h1>
 <nav> |
   <a href="About.html" id="AboutLink">About</a> |
   <a href="contact.html" id="contactLink">Contact</a>
@@ -29,12 +33,39 @@
 
 <form id="contactForm">
   <label>Name:</label><br>
-  <input type="text" required><br><br>
-
+  <input type="text" name="name" required><br><br>
   <label>Email:</label><br>
-  <input type="email" required><br><br>
-
+  <input type="email" name="email" required><br><br>
   <button type="submit">Submit</button>
 </form>
+
+<!-- Success message (hidden by default, shown after submit) -->
+<div id="successMsg" style="display:none; margin-top:16px; color:green;">
+  &#10003; Your message has been sent. Data has been sent to GTM.
+</div>
+
+<script>
+  // Initialise dataLayer early
+  window.dataLayer = window.dataLayer || [];
+
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Push event to GTM dataLayer
+    // GTM will pick this up and fire the Resul.io API tag
+    window.dataLayer.push({
+      event     : "form_submit",
+      form_name : "Contact Form",
+      form_id   : "contactForm",
+      page_url  : window.location.href,
+      page_title: document.title
+    });
+
+    // Show success message to user on the page (no alert popup)
+    document.getElementById("contactForm").style.display = "none";
+    document.getElementById("successMsg").style.display  = "block";
+  });
+</script>
+
 </body>
 </html>
