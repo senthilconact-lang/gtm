@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home - GTM Sample Site</title>
+  <title>Contact - GTM Sample Site</title>
 
   <!-- Google Tag Manager -->
   <script>
@@ -18,27 +18,29 @@
     })(window,document,'script','dataLayer','GTM-M2FJ969Z');
   </script>
 </head>
-
 <body>
-<h1>Home Page</h1>
-
+<h1>Contact Us</h1>
 <nav> |
   <a href="About.html" id="AboutLink">About</a> |
   <a href="contact.html" id="contactLink">Contact</a>
 </nav>
 
-<p>Welcome to the GTM sample website.</p>
-
-<button id="homeBtn">Home Button</button>
-
+<form id="contactForm">
+  <label>Name:</label><br>
+  <input type="text" required><br><br>
+  <label>Email:</label><br>
+  <input type="email" required><br><br>
+  <button type="submit">Submit</button>
+</form>
 <script>
-  document.getElementById("homeBtn").addEventListener("click", function() {
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
     dataLayer.push({
-      event: "button_click",
-      button_name: "Home Button"
+      event: "form_submit",
+      form_name: "Contact Form"
     });
+    alert("Form submitted and event sent to GTM");
   });
 </script>
-
 </body>
 </html>
